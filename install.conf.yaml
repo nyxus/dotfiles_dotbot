@@ -10,6 +10,10 @@
     command: [git submodule update --init --recursive --quiet, Installing submodules]
     stdout: true
     stderr: true
+  - 
+    command: [mkdir -p ~/.vim/bundle, create vim bundle folder]
+    stdout: true
+    stderr: true
 
 - link:
    
@@ -26,21 +30,29 @@
     ~/.tmux.conf:
         force: true
         path: tmux/tmux.conf
-    ~/.vim:
-      force: true
-      path: vim/.vim/
     ~/.vimrc:
       force: true
       path: vim/vimrc
+    ~/.vim/bundle/Vundle.vim:
+      force: true
+      path: vim/Vundle.vim
     ~/.zshrc: zshrc
 
 - shell:
+   -
+    command: [sudo apt-get -y install zsh, intalling curl]
+    stdout: true
+    stderr: true
+   -
+    command: [sudo apt-get -y install curl, intalling curl]
+    stdout: true
+    stderr: true
    -
     command: [curl -L git.io/antigen > $HOME/antigen.zsh, intalling antigen]
     stdout: true
     stderr: true
    -
-    command: [sudo apt-get install tmux, intalling tmux]
+    command: [sudo apt-get -y install tmux, intalling tmux]
     stdout: true
     stderr: true
    - tmux start-server
@@ -54,7 +66,7 @@
     command: [vim +PluginInstall +qall, Installing VIM plugins]
     stdout: true
     stderr: true
-   - sudo apt-get install dconf-cli
+   - sudo apt-get -y install dconf-cli
    -
     command: [~/.tools/gnome-terminal-colors-solarized/set_dark.sh Unnamed, Installing gnome solerised colors]
     stdout: true
